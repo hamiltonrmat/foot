@@ -15,10 +15,10 @@ REGULAR_PLAYERS = [
     {'nom': 'Hamilton', 'note': 5, 'position': POSITION_MAP['P']},
     {'nom': 'Ariel', 'note': 5, 'position': POSITION_MAP['P']},
     {'nom': 'Olivier', 'note': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Raoul', 'note': 1, 'position': POSITION_MAP['A']},
+    {'nom': 'Raoul', 'note': 2, 'position': POSITION_MAP['A']},
     {'nom': 'Marcouille', 'note': 3, 'position': POSITION_MAP['D']},
     {'nom': 'Marco', 'note': 3, 'position': POSITION_MAP['A']},
-    {'nom': 'Daniel', 'note': 4, 'position': POSITION_MAP['D']},
+    {'nom': 'Daniel', 'note': 3, 'position': POSITION_MAP['D']},
     {'nom': 'Tijani', 'note': 4, 'position': POSITION_MAP['P']},
     {'nom': 'Hamid', 'note': 4, 'position': POSITION_MAP['A']},
     {'nom': 'Lucas', 'note': 5, 'position': POSITION_MAP['P']},
@@ -27,7 +27,7 @@ REGULAR_PLAYERS = [
     {'nom': 'Thomas', 'note': 3, 'position': POSITION_MAP['P']},
     {'nom': 'Gabriel', 'note': 2, 'position': POSITION_MAP['D']},
     {'nom': 'Antoine', 'note': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Emile', 'note': 2, 'position': POSITION_MAP['P']},
+    {'nom': 'Emile', 'note': 3, 'position': POSITION_MAP['P']},
     {'nom': 'Arnaud', 'note': 4, 'position': POSITION_MAP['P']},
 ]
 
