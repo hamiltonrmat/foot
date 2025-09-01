@@ -111,7 +111,7 @@ for i, player in enumerate(REGULAR_PLAYERS):
 
 
 st.markdown("---")
-st.markdown("⚠️ Attention: le nombre de joueurs doit être égal à: (qtd. d'équipes) x (nb. d'équipes)")
+st.markdown("⚠️ Attention: le nombre de joueurs doit être égal à: (nb. d'équipes) x (nb. de joueurs p/ équipe)")
 
 # 2. Joueurs Invités
 st.subheader("Invités")
