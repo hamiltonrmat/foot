@@ -3,7 +3,7 @@ import pandas as pd
 
 # --- Configuration et Données Initiales ---
 
-st.set_page_config(page_title="Générateur d'Équipes de Futsal", layout="wide")
+st.set_page_config(page_title="Futsal Langevin", layout="wide")
 
 # Dictionnaire pour mapper les codes aux positions complètes
 POSITION_MAP = {'A': 'Attaquant', 'D': 'Défenseur', 'P': 'Polyvalent'}
