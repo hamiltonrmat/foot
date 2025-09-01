@@ -3,7 +3,7 @@ import pandas as pd
 
 # --- Configuration et Données Initiales ---
 
-st.set_page_config(page_title="Futsal Langevin", layout="wide")
+st.set_page_config(page_title="Générateur d'Équipes de Futsal", layout="wide")
 
 # Dictionnaire pour mapper les codes aux positions complètes
 POSITION_MAP = {'A': 'Attaquant', 'D': 'Défenseur', 'P': 'Polyvalent'}
@@ -17,13 +17,13 @@ REGULAR_PLAYERS = [
     {'nom': 'Olivier', 'note': 3, 'position': POSITION_MAP['D']},
     {'nom': 'Raoul', 'note': 1, 'position': POSITION_MAP['A']},
     {'nom': 'Marcouille', 'note': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Marco', 'note': 4, 'position': POSITION_MAP['A']},
+    {'nom': 'Marco', 'note': 3, 'position': POSITION_MAP['A']},
     {'nom': 'Daniel', 'note': 4, 'position': POSITION_MAP['D']},
     {'nom': 'Tijani', 'note': 4, 'position': POSITION_MAP['P']},
     {'nom': 'Hamid', 'note': 4, 'position': POSITION_MAP['A']},
     {'nom': 'Lucas', 'note': 5, 'position': POSITION_MAP['P']},
-    {'nom': 'Corentin', 'note': 4, 'position': POSITION_MAP['P']},
-    {'nom': 'Jean-Luc', 'note': 4, 'position': POSITION_MAP['D']},
+    {'nom': 'Corentin', 'note': 5, 'position': POSITION_MAP['P']},
+    {'nom': 'Jean-Luc', 'note': 3, 'position': POSITION_MAP['D']},
     {'nom': 'Thomas', 'note': 3, 'position': POSITION_MAP['P']},
     {'nom': 'Gabriel', 'note': 2, 'position': POSITION_MAP['D']},
     {'nom': 'Antoine', 'note': 3, 'position': POSITION_MAP['P']},
@@ -83,7 +83,7 @@ def create_balanced_teams(players, num_teams, players_per_team):
 
 # --- Interface Streamlit ---
 
-st.title("⚽ Générateur d'Équipes de Futsal")
+st.title("⚽ Futsal Langevin")
 
 # --- BARRE LATÉRALE DE CONFIGURATION ---
 st.sidebar.header("⚙️ Paramètres de Match")
@@ -108,7 +108,10 @@ for i, player in enumerate(REGULAR_PLAYERS):
         if is_present:
             selected_regulars.append(player)
 
+
+
 st.markdown("---")
+st.markdown("⚠️ Attention: le nombre de joueurs doit être égal à: (qtd. d'équipes) x (nb. d'équipes)")
 
 # 2. Joueurs Invités
 st.subheader("Invités")
