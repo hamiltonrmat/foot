@@ -15,7 +15,7 @@ REGULAR_PLAYERS = [
     {'nom': 'Antoine', 'attaque': 2, 'defense': 3, 'endurance': 4, 'position': POSITION_MAP['P']},
     {'nom': 'Arnaud', 'attaque': 3, 'defense': 3, 'endurance': 4, 'position': POSITION_MAP['A']},
     {'nom': 'Ariel', 'attaque': 5, 'defense': 5, 'endurance': 5, 'position': POSITION_MAP['P']},
-    {'nom': 'Corentin', 'attaque': 5, 'defense': 4, 'endurance': 5, 'position': POSITION_MAP['P']},
+    {'nom': 'Corentin', 'attaque': 5, 'defense': 4, 'endurance': 4, 'position': POSITION_MAP['P']},
     {'nom': 'Daniel', 'attaque': 2, 'defense': 5, 'endurance': 3, 'position': POSITION_MAP['D']},
     {'nom': 'Emile', 'attaque': 2, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['D']},
     {'nom': 'Gabriel', 'attaque': 1, 'defense': 4, 'endurance': 3, 'position': POSITION_MAP['D']},
