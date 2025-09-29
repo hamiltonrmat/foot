@@ -10,73 +10,97 @@ POSITION_MAP = {'A': 'Attaquant', 'D': 'Défenseur', 'P': 'Polyvalent'}
 # Dictionnaire inversé pour l'affichage
 POSITION_MAP_INV = {v: k for k, v in POSITION_MAP.items()}
 
-# Liste des joueurs réguliers
+# Liste des joueurs réguliers avec notes détaillées
 REGULAR_PLAYERS = [
-    {'nom': 'Hamilton', 'note': 5, 'position': POSITION_MAP['P']},
-    {'nom': 'Romain', 'note': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Etudiant1', 'note': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Etudiant2', 'note': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Etudiant3', 'note': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Ariel', 'note': 5, 'position': POSITION_MAP['P']},
-    {'nom': 'Olivier', 'note': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Raoul', 'note': 2, 'position': POSITION_MAP['A']},
-    {'nom': 'Marcouille', 'note': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Marco', 'note': 3, 'position': POSITION_MAP['A']},
-    {'nom': 'Daniel', 'note': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Tijani', 'note': 4, 'position': POSITION_MAP['P']},
-    {'nom': 'Hamid', 'note': 4, 'position': POSITION_MAP['A']},
-    {'nom': 'Lucas', 'note': 5, 'position': POSITION_MAP['P']},
-    {'nom': 'Corentin', 'note': 5, 'position': POSITION_MAP['P']},
-    {'nom': 'Jean-Luc', 'note': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Thomas', 'note': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Gabriel', 'note': 2, 'position': POSITION_MAP['D']},
-    {'nom': 'Antoine', 'note': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Emile', 'note': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Arnaud', 'note': 4, 'position': POSITION_MAP['P']},
+    {'nom': 'Hamilton', 'attaque': 5, 'defense': 5, 'endurance': 5, 'position': POSITION_MAP['P']},
+    {'nom': 'Romain', 'attaque': 2, 'defense': 4, 'endurance': 3, 'position': POSITION_MAP['D']},
+    {'nom': 'Etudiant1', 'attaque': 3, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
+    {'nom': 'Etudiant2', 'attaque': 3, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
+    {'nom': 'Etudiant3', 'attaque': 3, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
+    {'nom': 'Ariel', 'attaque': 5, 'defense': 5, 'endurance': 5, 'position': POSITION_MAP['P']},
+    {'nom': 'Olivier', 'attaque': 2, 'defense': 4, 'endurance': 3, 'position': POSITION_MAP['D']},
+    {'nom': 'Raoul', 'attaque': 3, 'defense': 1, 'endurance': 2, 'position': POSITION_MAP['A']},
+    {'nom': 'Marcouille', 'attaque': 2, 'defense': 4, 'endurance': 3, 'position': POSITION_MAP['D']},
+    {'nom': 'Marco', 'attaque': 4, 'defense': 2, 'endurance': 3, 'position': POSITION_MAP['A']},
+    {'nom': 'Daniel', 'attaque': 2, 'defense': 4, 'endurance': 3, 'position': POSITION_MAP['D']},
+    {'nom': 'Tijani', 'attaque': 4, 'defense': 4, 'endurance': 4, 'position': POSITION_MAP['P']},
+    {'nom': 'Hamid', 'attaque': 5, 'defense': 3, 'endurance': 4, 'position': POSITION_MAP['A']},
+    {'nom': 'Lucas', 'attaque': 5, 'defense': 5, 'endurance': 5, 'position': POSITION_MAP['P']},
+    {'nom': 'Corentin', 'attaque': 5, 'defense': 5, 'endurance': 5, 'position': POSITION_MAP['P']},
+    {'nom': 'Jean-Luc', 'attaque': 2, 'defense': 4, 'endurance': 3, 'position': POSITION_MAP['D']},
+    {'nom': 'Thomas', 'attaque': 3, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
+    {'nom': 'Gabriel', 'attaque': 1, 'defense': 3, 'endurance': 2, 'position': POSITION_MAP['D']},
+    {'nom': 'Antoine', 'attaque': 3, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
+    {'nom': 'Emile', 'attaque': 3, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
+    {'nom': 'Arnaud', 'attaque': 4, 'defense': 4, 'endurance': 4, 'position': POSITION_MAP['P']},
 ]
 
 # Initialisation du session_state pour les joueurs invités
 if 'guest_players' not in st.session_state:
     st.session_state.guest_players = []
 
-# --- Fonctions de l'Algorithme (inchangées) ---
+# --- Fonctions de l'Algorithme ---
 
 def calculate_team_stats(team):
-    if not team: return 0
-    return sum(player['note'] for player in team)
+    """Calcule les statistiques totales d'une équipe"""
+    if not team:
+        return {'total': 0, 'attaque': 0, 'defense': 0, 'endurance': 0}
+    
+    stats = {
+        'attaque': sum(player['attaque'] for player in team),
+        'defense': sum(player['defense'] for player in team),
+        'endurance': sum(player['endurance'] for player in team)
+    }
+    stats['total'] = stats['attaque'] + stats['defense'] + stats['endurance']
+    return stats
+
+def get_player_total(player):
+    """Calcule la note totale d'un joueur"""
+    return player['attaque'] + player['defense'] + player['endurance']
 
 def create_balanced_teams(players, num_teams, players_per_team):
     teams = [[] for _ in range(num_teams)]
     
-    attackers = sorted([p for p in players if p['position'] == 'Attaquant'], key=lambda x: x['note'], reverse=True)
-    defenders = sorted([p for p in players if p['position'] == 'Défenseur'], key=lambda x: x['note'], reverse=True)
-    versatile = sorted([p for p in players if p['position'] == 'Polyvalent'], key=lambda x: x['note'], reverse=True)
+    # Séparation par position et tri par note totale
+    attackers = sorted([p for p in players if p['position'] == 'Attaquant'], 
+                      key=get_player_total, reverse=True)
+    defenders = sorted([p for p in players if p['position'] == 'Défenseur'], 
+                      key=get_player_total, reverse=True)
+    versatile = sorted([p for p in players if p['position'] == 'Polyvalent'], 
+                      key=get_player_total, reverse=True)
     
-    # Distribution pour contraintes de position
+    # Distribution pour contraintes de position (1 attaquant et 1 défenseur minimum par équipe)
     for i in range(num_teams):
-        if attackers: teams[i].append(attackers.pop(0))
-        elif versatile: teams[i].append(versatile.pop(0))
+        if attackers:
+            teams[i].append(attackers.pop(0))
+        elif versatile:
+            teams[i].append(versatile.pop(0))
         else:
             st.error("Pas assez d'attaquants ou de joueurs polyvalents pour former les équipes.")
             return None
             
-        if defenders: teams[i].append(defenders.pop(0))
-        elif versatile: teams[i].append(versatile.pop(0))
+        if defenders:
+            teams[i].append(defenders.pop(0))
+        elif versatile:
+            teams[i].append(versatile.pop(0))
         else:
             st.error("Pas assez de défenseurs ou de joueurs polyvalents pour former les équipes.")
             return None
 
     # Distribution des joueurs restants pour équilibrer
-    remaining_players = sorted(attackers + defenders + versatile, key=lambda x: x['note'], reverse=True)
+    remaining_players = sorted(attackers + defenders + versatile, 
+                              key=get_player_total, reverse=True)
     
     for player in remaining_players:
-        team_notes = [calculate_team_stats(t) for t in teams]
+        team_stats = [calculate_team_stats(t) for t in teams]
         available_teams = []
+        
         for i, team in enumerate(teams):
             if len(team) < players_per_team:
-                available_teams.append((team_notes[i], i))
+                available_teams.append((team_stats[i]['total'], i))
         
-        if not available_teams: break
+        if not available_teams:
+            break
             
         available_teams.sort()
         target_team_index = available_teams[0][1]
@@ -102,17 +126,17 @@ st.header("👤 Sélection des Joueurs Présents")
 # 1. Joueurs Réguliers
 st.subheader("Réguliers")
 selected_regulars = []
-cols = st.columns(3) # Affichage sur 3 colonnes pour la compacité
+cols = st.columns(3)
 for i, player in enumerate(REGULAR_PLAYERS):
     with cols[i % 3]:
+        total = get_player_total(player)
         is_present = st.checkbox(
-            f"{player['nom']} (Note: {player['note']}, Pos: {POSITION_MAP_INV[player['position']]})", 
-            key=f"player_{i}"
+            f"{player['nom']} (Total: {total}, Pos: {POSITION_MAP_INV[player['position']]})", 
+            key=f"player_{i}",
+            help=f"Attaque: {player['attaque']}, Défense: {player['defense']}, Endurance: {player['endurance']}"
         )
         if is_present:
             selected_regulars.append(player)
-
-
 
 st.markdown("---")
 st.markdown("⚠️ Attention: le nombre de joueurs doit être égal à: (nb. d'équipes) x (nb. de joueurs p/ équipe)")
@@ -120,16 +144,20 @@ st.markdown("⚠️ Attention: le nombre de joueurs doit être égal à: (nb. d'
 # 2. Joueurs Invités
 st.subheader("Invités")
 with st.form("guest_form", clear_on_submit=True):
-    col1, col2, col3 = st.columns([2, 1, 1])
+    col1, col2, col3, col4, col5 = st.columns([2, 1, 1, 1, 1])
     guest_name = col1.text_input("Nom de l'invité")
-    guest_note = col2.number_input("Note", min_value=1, max_value=5, step=1, value=3)
-    guest_pos_short = col3.selectbox("Position", options=list(POSITION_MAP.keys()))
+    guest_attaque = col2.number_input("Attaque", min_value=1, max_value=5, step=1, value=3)
+    guest_defense = col3.number_input("Défense", min_value=1, max_value=5, step=1, value=3)
+    guest_endurance = col4.number_input("Endurance", min_value=1, max_value=5, step=1, value=3)
+    guest_pos_short = col5.selectbox("Pos", options=list(POSITION_MAP.keys()))
     
     if st.form_submit_button("Ajouter l'invité"):
         if guest_name:
             st.session_state.guest_players.append({
                 'nom': guest_name,
-                'note': guest_note,
+                'attaque': guest_attaque,
+                'defense': guest_defense,
+                'endurance': guest_endurance,
                 'position': POSITION_MAP[guest_pos_short]
             })
             st.rerun()
@@ -139,11 +167,11 @@ if st.session_state.guest_players:
     st.write("Liste des invités :")
     for i, player in enumerate(st.session_state.guest_players):
         col1, col2 = st.columns([4, 1])
-        col1.write(f"- {player['nom']} (Note: {player['note']}, Pos: {POSITION_MAP_INV[player['position']]})")
-        # Le bouton de suppression utilise l'index pour retirer l'élément de la liste
+        total = get_player_total(player)
+        col1.write(f"- {player['nom']} (ATT: {player['attaque']}, DEF: {player['defense']}, END: {player['endurance']}, Total: {total}, Pos: {POSITION_MAP_INV[player['position']]})")
         if col2.button("❌", key=f"del_{i}"):
             st.session_state.guest_players.pop(i)
-            st.rerun() # On utilise la nouvelle syntaxe pour forcer le rafraîchissement
+            st.rerun()
             
 st.markdown("---")
 
@@ -171,32 +199,64 @@ if st.button("🚀 Générer les équipes", type="primary", use_container_width=
             st.header("Équipes Formées")
             
             cols = st.columns(num_teams)
-            team_notes = []
+            all_team_stats = []
 
             for i, team in enumerate(teams):
                 with cols[i]:
-                    total_note = calculate_team_stats(team)
-                    team_notes.append(total_note)
-                    st.subheader(f"Équipe {i + 1} (Note: {total_note})")
+                    stats = calculate_team_stats(team)
+                    all_team_stats.append(stats)
+                    
+                    st.subheader(f"Équipe {i + 1}")
+                    st.metric(label="Note Totale", value=stats['total'])
+                    
+                    # Affichage des stats par catégorie
+                    subcols = st.columns(3)
+                    subcols[0].metric("⚔️ Attaque", stats['attaque'])
+                    subcols[1].metric("🛡️ Défense", stats['defense'])
+                    subcols[2].metric("⚡ Endurance", stats['endurance'])
+                    
+                    st.markdown("---")
                     
                     # Préparation pour un affichage propre
                     display_team = []
                     for p in team:
                         display_team.append({
                             'Nom': p['nom'],
-                            'Note': p['note'],
+                            'ATT': p['attaque'],
+                            'DEF': p['defense'],
+                            'END': p['endurance'],
+                            'Total': get_player_total(p),
                             'Pos': POSITION_MAP_INV[p['position']]
                         })
                     
                     df_team = pd.DataFrame(display_team)
-                    st.dataframe(df_team, hide_index=True)
+                    st.dataframe(df_team, hide_index=True, use_container_width=True)
             
             # Résumé de l'équilibrage
             st.header("📊 Résumé de l'Équilibrage")
-            if team_notes:
-                min_note, max_note = min(team_notes), max(team_notes)
-                st.metric(
-                    label="Écart de note (max - min)",
-                    value=f"{max_note - min_note}",
-                    help="Plus ce chiffre est proche de 0, plus l'équilibre est parfait."
-                )
+            
+            # Calcul des écarts
+            totals = [s['total'] for s in all_team_stats]
+            attaques = [s['attaque'] for s in all_team_stats]
+            defenses = [s['defense'] for s in all_team_stats]
+            endurances = [s['endurance'] for s in all_team_stats]
+            
+            col1, col2, col3, col4 = st.columns(4)
+            
+            col1.metric(
+                label="Écart Total",
+                value=f"{max(totals) - min(totals)}",
+                help="Différence entre l'équipe la plus forte et la plus faible"
+            )
+            col2.metric(
+                label="Écart Attaque",
+                value=f"{max(attaques) - min(attaques)}"
+            )
+            col3.metric(
+                label="Écart Défense",
+                value=f"{max(defenses) - min(defenses)}"
+            )
+            col4.metric(
+                label="Écart Endurance",
+                value=f"{max(endurances) - min(endurances)}"
+            )
