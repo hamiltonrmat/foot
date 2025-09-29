@@ -13,6 +13,10 @@ POSITION_MAP_INV = {v: k for k, v in POSITION_MAP.items()}
 # Liste des joueurs réguliers
 REGULAR_PLAYERS = [
     {'nom': 'Hamilton', 'note': 5, 'position': POSITION_MAP['P']},
+    {'nom': 'Romain', 'note': 3, 'position': POSITION_MAP['D']},
+    {'nom': 'Etudiant1', 'note': 3, 'position': POSITION_MAP['P']},
+    {'nom': 'Etudiant2', 'note': 3, 'position': POSITION_MAP['P']},
+    {'nom': 'Etudiant3', 'note': 3, 'position': POSITION_MAP['P']},
     {'nom': 'Ariel', 'note': 5, 'position': POSITION_MAP['P']},
     {'nom': 'Olivier', 'note': 3, 'position': POSITION_MAP['D']},
     {'nom': 'Raoul', 'note': 2, 'position': POSITION_MAP['A']},
