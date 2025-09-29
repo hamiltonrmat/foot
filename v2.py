@@ -12,27 +12,26 @@ POSITION_MAP_INV = {v: k for k, v in POSITION_MAP.items()}
 
 # Liste des joueurs réguliers avec notes détaillées
 REGULAR_PLAYERS = [
-    {'nom': 'Antoine', 'attaque': 2, 'defense': 3, 'endurance': 4, 'position': POSITION_MAP['P']},
-    {'nom': 'Arnaud', 'attaque': 3, 'defense': 3, 'endurance': 4, 'position': POSITION_MAP['A']},
+    {'nom': 'Antoine', 'attaque': 3.5, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
+    {'nom': 'Arnaud', 'attaque': 4, 'defense': 3, 'endurance': 4, 'position': POSITION_MAP['A']},
     {'nom': 'Ariel', 'attaque': 5, 'defense': 5, 'endurance': 5, 'position': POSITION_MAP['P']},
-    {'nom': 'Corentin', 'attaque': 5, 'defense': 4, 'endurance': 4, 'position': POSITION_MAP['P']},
-    {'nom': 'Daniel', 'attaque': 2, 'defense': 5, 'endurance': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Emile', 'attaque': 2, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['D']},
+    {'nom': 'Corentin', 'attaque': 5, 'defense': 4, 'endurance': 4.5, 'position': POSITION_MAP['P']},
+    {'nom': 'Daniel', 'attaque': 2.5, 'defense': 4.5, 'endurance': 3, 'position': POSITION_MAP['D']},
     {'nom': 'Gabriel', 'attaque': 1, 'defense': 4, 'endurance': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Hamid', 'attaque': 5, 'defense': 2, 'endurance': 3, 'position': POSITION_MAP['A']},
-    {'nom': 'Hamilton', 'attaque': 5, 'defense': 4, 'endurance': 4, 'position': POSITION_MAP['P']},
-    {'nom': 'Jean-Luc', 'attaque': 1, 'defense': 4, 'endurance': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Lucas', 'attaque': 5, 'defense': 5, 'endurance': 5, 'position': POSITION_MAP['P']},
-    {'nom': 'Marcouille', 'attaque': 2, 'defense': 4, 'endurance': 3, 'position': POSITION_MAP['D']},
+    {'nom': 'Hamid', 'attaque': 5, 'defense': 3, 'endurance': 2.5, 'position': POSITION_MAP['A']},
+    {'nom': 'Hamilton', 'attaque': 5, 'defense': 3, 'endurance': 5, 'position': POSITION_MAP['P']},
+    {'nom': 'Jean-Luc', 'attaque': 3.5, 'defense': 4, 'endurance': 2, 'position': POSITION_MAP['D']},
+    {'nom': 'Lucas', 'attaque': 5, 'defense': 3, 'endurance': 5, 'position': POSITION_MAP['P']},
+    {'nom': 'Marcouille', 'attaque': 3, 'defense': 4, 'endurance': 4, 'position': POSITION_MAP['D']},
     {'nom': 'Marco IT', 'attaque': 4, 'defense': 2, 'endurance': 3, 'position': POSITION_MAP['A']},
-    {'nom': 'Olivier', 'attaque': 2, 'defense': 5, 'endurance': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Raoul', 'attaque': 1, 'defense': 2, 'endurance': 3, 'position': POSITION_MAP['A']},
+    {'nom': 'Olivier', 'attaque': 1, 'defense': 5, 'endurance': 4, 'position': POSITION_MAP['D']},
+    {'nom': 'Raoul', 'attaque': 1.5, 'defense': 1, 'endurance': 3, 'position': POSITION_MAP['A']},
     {'nom': 'Romain', 'attaque': 2, 'defense': 4, 'endurance': 3, 'position': POSITION_MAP['D']},
-    {'nom': 'Tijani', 'attaque': 4, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Thomas', 'attaque': 3, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Etudiant1', 'attaque': 3, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Etudiant2', 'attaque': 3, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']},
-    {'nom': 'Etudiant3', 'attaque': 3, 'defense': 3, 'endurance': 3, 'position': POSITION_MAP['P']}
+    {'nom': 'Tijani', 'attaque': 4, 'defense': 3, 'endurance': 4, 'position': POSITION_MAP['P']},
+    {'nom': 'Thomas', 'attaque': 3.5, 'defense': 3, 'endurance': 4, 'position': POSITION_MAP['P']},
+    {'nom': 'Etudiant1', 'attaque': 2.5, 'defense': 2.5, 'endurance': 2.5, 'position': POSITION_MAP['P']},
+    {'nom': 'Etudiant2', 'attaque': 2.5, 'defense': 2.5, 'endurance': 2.5, 'position': POSITION_MAP['P']},
+    {'nom': 'Etudiant3', 'attaque': 2.5, 'defense': 2.5, 'endurance': 2.5, 'position': POSITION_MAP['P']}
 ]
 
 # Initialisation du session_state pour les joueurs invités
@@ -146,9 +145,9 @@ st.subheader("Invités")
 with st.form("guest_form", clear_on_submit=True):
     col1, col2, col3, col4, col5 = st.columns([2, 1, 1, 1, 1])
     guest_name = col1.text_input("Nom de l'invité")
-    guest_attaque = col2.number_input("Attaque", min_value=1, max_value=5, step=1, value=3)
-    guest_defense = col3.number_input("Défense", min_value=1, max_value=5, step=1, value=3)
-    guest_endurance = col4.number_input("Endurance", min_value=1, max_value=5, step=1, value=3)
+    guest_attaque = col2.number_input("Attaque", min_value=1.0, max_value=5.0, step=0.5, value=3.0)
+    guest_defense = col3.number_input("Défense", min_value=1.0, max_value=5.0, step=0.5, value=3.0)
+    guest_endurance = col4.number_input("Endurance", min_value=1.0, max_value=5.0, step=0.5, value=3.0)
     guest_pos_short = col5.selectbox("Pos", options=list(POSITION_MAP.keys()))
     
     if st.form_submit_button("Ajouter l'invité"):
